@@ -1,18 +1,21 @@
 from products import Product
+from store import Store
+
+from products import Product
+from store import Store
 
 def main():
-    bose = Product("Bose QuietComfort Earbuds", price=250, quantity=500)
-    mac = Product("MacBook Air M2", price=1450, quantity=100)
+    product_list = [
+        Product("MacBook Air M2", price=1450, quantity=100),
+        Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+        Product("Google Pixel 7", price=500, quantity=250),
+    ]
 
-    print(bose.buy(50))         # Expected: 12500
-    print(mac.buy(100))         # Expected: 145000
-    print(mac.is_active())      # Expected: False
+    best_buy = Store(product_list)
 
-    bose.show()                 # Should reflect quantity 450
-    mac.show()                  # Quantity 0, inactive
-
-    bose.set_quantity(1000)
-    bose.show()                 # Quantity should now be 1000
+    products = best_buy.get_all_products()
+    print(best_buy.get_total_quantity())                     # Expected: 850
+    print(best_buy.order([(products[0], 1), (products[1], 2)]))  # Expected: 1450 + 500 = 1950
 
 if __name__ == "__main__":
     main()
