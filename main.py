@@ -4,12 +4,13 @@ from store import Store
 def start(store):
     while True:
         print("\n--- Welcome to Best Buy ---")
+        print()
         print("1. List all products in store")
         print("2. Show total amount in store")
         print("3. Make an order")
-        print("4. Quit")
+        print("\n4. Quit")
 
-        choice = input("Enter your choice (1-4): ")
+        choice = input("\nEnter your choice (1-4): ")
 
         if choice == "1":
             print("\n--- Products Available ---")
@@ -25,11 +26,11 @@ def start(store):
             order_items = []
             products = store.get_all_products()
             for index, product in enumerate(products, start=1):
-                print(f"{index}. {product.name} (Price: {product.price}, Available: {product.quantity})")
+                print(f"\n {index}. {product.name} (Price: {product.price}, Available: {product.quantity})")
 
             while True:
                 try:
-                    selection = input("Enter product number to order (or press Enter to finish): ")
+                    selection = input("\nEnter product number to order (or press Enter to finish): ")
                     if selection == "":
                         break
                     product_index = int(selection) - 1
