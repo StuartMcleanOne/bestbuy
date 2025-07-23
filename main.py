@@ -1,16 +1,26 @@
+"""Best Buy Store CLI
+This module provides a command-line interface for interacting with the store.
+Users can view available products, check store inventory, place orders, or exit.
+"""
+
 from products import Product
 from store import Store
 
 def start(store):
+    """
+    Launches the interactive menu for the store.
+
+    Args:
+        store (Store): The store instance containing available products.
+    """
     while True:
         print("\n--- Welcome to Best Buy ---")
-        print()
         print("1. List all products in store")
         print("2. Show total amount in store")
         print("3. Make an order")
-        print("\n4. Quit")
+        print("4. Quit")
 
-        choice = input("\nEnter your choice (1-4): ")
+        choice = input("Enter your choice (1-4): ").strip()
 
         if choice == "1":
             print("\n--- Products Available ---")
@@ -25,13 +35,14 @@ def start(store):
             print("\n--- Place an Order ---")
             order_items = []
             products = store.get_all_products()
+
             for index, product in enumerate(products, start=1):
-                print(f"\n {index}. {product.name} (Price: {product.price}, Available: {product.quantity})")
+                print(f"{index}. {product.name} (Price: {product.price}, Available: {product.quantity})")
 
             while True:
                 try:
-                    selection = input("\nEnter product number to order (or press Enter to finish): ")
-                    if selection == "":
+                    selection = input("Enter product number to order (or press Enter to finish): ").strip()
+                    if not selection:
                         break
                     product_index = int(selection) - 1
                     if product_index not in range(len(products)):
@@ -49,14 +60,16 @@ def start(store):
                 print(f"Order failed: {e}")
 
         elif choice == "4":
-            print("Thank you for shopping at Best Buy! ")
+            print("Thank you for shopping at Best Buy! 👋")
             break
 
         else:
             print("Invalid choice. Please select a valid option.")
 
 def main():
-    # Setup initial inventory
+    """
+    Initializes the product inventory and starts the CLI interface.
+    """
     product_list = [
         Product("MacBook Air M2", price=1450, quantity=100),
         Product("Bose QuietComfort Earbuds", price=250, quantity=500),
@@ -66,4 +79,4 @@ def main():
     start(best_buy)
 
 if __name__ == "__main__":
-    main()
+    main
