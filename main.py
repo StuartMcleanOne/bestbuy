@@ -60,7 +60,7 @@ def start(store):
                 print(f"Order failed: {e}")
 
         elif choice == "4":
-            print("Thank you for shopping at Best Buy! 👋")
+            print("Thank you for shopping at Best Buy! ")
             break
 
         else:
@@ -79,4 +79,4 @@ def main():
     start(best_buy)
 
 if __name__ == "__main__":
-    main
+    main()
